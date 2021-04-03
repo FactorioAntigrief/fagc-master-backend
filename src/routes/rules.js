@@ -35,7 +35,7 @@ router.post('/create', async (req, res) => {
 router.delete('/remove', async (req, res) => {
     if (req.body.id === undefined || !ObjectId.isValid(req.body.id))
         return res.status(400).json({ error: "Bad Request", description: `id must be object ID` })
-    const rule = await RuleModel.findById(req.body.id) // change to AndDelete
+    const rule = await RuleModel.findByIdAndDelete(req.body.id)
     if (rule) {
         ruleRemovedMessage(rule.toObject())
         res.status(200).json(rule)

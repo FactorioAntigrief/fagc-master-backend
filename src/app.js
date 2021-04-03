@@ -10,10 +10,6 @@ const config = require("../config.json")
 
 const ruleRouter = require('./routes/rules')
 const communityRouter = require('./routes/communities')
-const violationRouter = require('./routes/violations')
-const informaticsRouter = require('./routes/informatics')
-const revocationRouter = require('./routes/revocations')
-const offenseRouter = require('./routes/offenses')
 
 const testingRouter = require('./routes/testing')
 
@@ -47,16 +43,12 @@ const authMiddleware = async (req, res, next) => {
 
 // Informatics router should be publicly available to anyone who wants to use it (logs & webhooks)
 // this is why it is first, before the authentication middleware.
-app.use('/master/informatics', informaticsRouter)
 
 app.use('/master/*', authMiddleware)
 
 app.use('/master/rules', ruleRouter)
 app.use('/master/communities', communityRouter)
-app.use('/master/violations', violationRouter)
-app.use('/master/revocations', revocationRouter)
 app.use('/master/testing', testingRouter)
-app.use('/master/offenses', offenseRouter)
 
 app.get('/', (req, res) => {
     res.status(200).json({message: "FAGC api"})
