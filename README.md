@@ -1,2 +1,3 @@
 # fagc-master-backend
-The master backend for FAGC
+
+The master backend for the Factorio Anti-Grief community
