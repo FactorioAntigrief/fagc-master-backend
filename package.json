@@ -9,15 +9,15 @@
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
-    "crypto-random-string": "^2.0.0",
-    "debug": "~2.6.9",
-    "discord.js": "^12.5.1",
-    "express": "~4.16.1",
-    "http-errors": "~1.6.3",
+    "crypto-random-string": "^4.0.0",
+    "debug": "~4.3.1",
+    "discord.js": "^12.5.3",
+    "express": "~4.17.1",
+    "http-errors": "~1.8.0",
     "jade": "~1.11.0",
     "lodash": "^4.17.21",
-    "mongoose": "^5.11.19",
-    "morgan": "^1.9.1",
+    "mongoose": "^5.12.5",
+    "morgan": "^1.10.0",
     "swagger-jsdoc": "^7.0.0-rc.6"
   },
   "repository": {
@@ -32,7 +32,7 @@
   },
   "homepage": "https://github.com/oof2win2/fagc-backend#readme",
   "devDependencies": {
-    "eslint": "^7.21.0",
+    "eslint": "^7.24.0",
     "nodemon": "^2.0.7"
   }
 }
