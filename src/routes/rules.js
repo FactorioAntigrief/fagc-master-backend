@@ -39,8 +39,8 @@ router.delete('/remove', async (req, res) => {
     if (rule) {
         ruleRemovedMessage(rule.toObject())
         res.status(200).json(rule)
-        const deletedViolations = await ViolationModel.find({ brokenRule: rule._id })
-        await ViolationModel.deleteMany({ brokenRule: rule._id })
+        const deletedViolations = await ViolationModel.find({ broken_rule: rule._id })
+        await ViolationModel.deleteMany({ broken_rule: rule._id })
         await deletedViolations.forEach(async (violation) => {
             await OffenseModel.updateOne({ "violations": violation._id }, {
                 $pull: {"violations": violation._id}

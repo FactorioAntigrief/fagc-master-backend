@@ -23,7 +23,7 @@ router.get('/getown', async (req, res) => {
     console.log(req.headers.apikey)
     if (req.headers.apikey === undefined)
         return res.status(400).json({ error: "Bad Request", description: "No way to find you community without an API key" })
-    const auth = await AuthModel.findOne({ apiKey: req.headers.apikey })
+    const auth = await AuthModel.findOne({ api_key: req.headers.apikey })
     if (!auth)
         return res.status(404).json({error:"Not Found", description: "Community with your API key was not found"})
     const dbRes = await CommunityModel.findOne({
@@ -52,9 +52,9 @@ router.post('/create', async (req, res) => {
     })
     if (dbRes !== null)
         return res.status(403).json({ error: "Bad Request", description: `Community with name ${req.body.name} already exists` })
-    const apiKey = await AuthModel.create({
+    const api_key = await AuthModel.create({
         communityname: req.body.name,
-        apiKey: cryptoRandomString(128)
+        api_key: cryptoRandomString(128)
     })
     const community = await CommunityModel.create({
         name: req.body.name,
@@ -64,8 +64,8 @@ router.post('/create', async (req, res) => {
     communityCreatedMessage(community.toObject())
     res.status(200).json({
         community: community,
-        key: apiKey.apiKey,
-        allowedIPs: []
+        key: api_key.api_key,
+        allowed_ips: []
     })
 })
 
