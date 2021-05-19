@@ -6,6 +6,16 @@ const OffenseModel = require("../database/schemas/offense")
 const { ruleCreatedMessage, ruleRemovedMessage } = require("../utils/info")
 const ObjectId = require('mongoose').Types.ObjectId;
 
+router.get('/getall', async (req, res) => {
+	const result = await RuleModel.find()
+	return res.status(200).json(result)
+})
+router.get('/getid', async (req, res) => {
+	if (req.query.id === undefined || !ObjectId.isValid(req.query.id))
+		return res.status(400).json({ error: "Bad Request", description: `id must be ObjectID, got ${req.query.id}` })
+	const rule = await RuleModel.findById(req.query.id)
+	res.status(200).json(rule)
+})
 router.post('/create', async (req, res) => {
     if (req.body.shortdesc === undefined || typeof (req.body.shortdesc) !== "string")
         return res.status(400).json({ error: "Bad Request", description: `shortdesc must be string, got ${req.body.shortdesc}` })

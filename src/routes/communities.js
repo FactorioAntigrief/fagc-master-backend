@@ -9,6 +9,17 @@ const ObjectId = require('mongoose').Types.ObjectId
 const { communityCreatedMessage, communityRemovedMessage } = require("../utils/info")
 const { checkGuild, checkUser } = require("../utils/functions")
 
+router.get('/getid', async (req, res) => {
+	if (req.query.id === undefined || !ObjectId.isValid(req.query.id))
+		return res.status(400).json({ error: "Bad Request", description: `id must be ObjectID, got ${req.query.id}` })
+	const community = await CommunityModel.findById(req.query.id)
+	res.status(200).json(community)
+})
+router.get('/getall', async (req, res) => {
+	const dbRes = await CommunityModel.find({ name: { $exists: true } })
+	res.status(200).json(dbRes)
+})
+
 router.post('/create', async (req, res) => {
     if (req.body.name === undefined || typeof (req.body.name) !== "string")
         return res.status(400).json({ error: "Bad Request", description: `name expected string, got ${typeof (req.body.name)} with value of ${req.body.name}` })
