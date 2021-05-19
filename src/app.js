@@ -6,7 +6,7 @@ const mongoose = require("mongoose")
 
 const logger = require('./utils/log')
 const authUser = require("./utils/authUser")
-const config = require("../config.json")
+const config = require("../config")
 
 const ruleRouter = require('./routes/rules')
 const communityRouter = require('./routes/communities')

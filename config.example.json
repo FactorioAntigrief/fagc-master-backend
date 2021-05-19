@@ -1,6 +1,0 @@
-{
-    "_comment_mongo": "Your MongoDB URI",
-    "mongoURI": "",
-    "_comment_apikey": "your API key for the master bot",
-    "apikey": ""
-}

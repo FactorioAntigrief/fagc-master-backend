@@ -1,7 +1,10 @@
 const mongoose = require("mongoose")
 
 const AuthSchema = new mongoose.Schema({
-    communityname: String,
+	communityid: {
+		type: mongoose.Types.ObjectId,
+		ref: 'Communities'
+	},
     api_key: String,
     allowed_ips: [String]
 })

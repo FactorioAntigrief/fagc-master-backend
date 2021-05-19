@@ -228,8 +228,8 @@ async function communityRemovedMessage(community) {
     }
 }
 
-// wss.on('connection', () => {
-//     console.log("new WebSocket connection!");
+// wss.on('mongoose', () => {
+//     console.log("new WebSocket mongoose!");
 // })
 // wss.on('listening', () => {
 //     console.log("Websocket listening!")

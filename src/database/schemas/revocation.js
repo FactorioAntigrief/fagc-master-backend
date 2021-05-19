@@ -2,9 +2,12 @@ const mongoose = require("mongoose")
 
 const RevocationSchema = new mongoose.Schema({
     playername: String,
-    admin_name: String,
-    communityname: String,
-    broken_rule: mongoose.SchemaTypes.ObjectId,
+    admin_id: String,
+	communityid: {
+		type: mongoose.Types.ObjectId,
+		ref: "Communities"
+	},
+	broken_rule: mongoose.SchemaTypes.ObjectId,
     proof: String,
     description: String,
     automated: Boolean,

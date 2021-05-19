@@ -1,4 +1,4 @@
-const { apikey } = require("../../config.json")
+const { apikey } = require("../../config")
 
 /**
  * @description Checks the authentication of a user by searching the database with the API key
