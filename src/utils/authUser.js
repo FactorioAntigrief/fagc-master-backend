@@ -7,6 +7,7 @@ const { apikey } = require("../../config")
  */
 const authenticate = async (req) => {
     if (req.method === 'GET') return 200
+	console.log(req.headers.apikey, {apikey})
     if (req.headers.apikey === undefined) return 404 // no api key
     if (req.headers.apikey !== apikey) return 401
     else return 200

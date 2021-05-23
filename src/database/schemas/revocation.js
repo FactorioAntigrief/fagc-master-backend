@@ -1,6 +1,8 @@
 const mongoose = require("mongoose")
+const { getUserStringFromID } = require("../../utils/functions-databaseless")
 
 const RevocationSchema = new mongoose.Schema({
+	readableid: String,
     playername: String,
     admin_id: String,
 	communityid: {
@@ -15,5 +17,10 @@ const RevocationSchema = new mongoose.Schema({
     revokedTime: Date,
     revokedBy: String
 })
+RevocationSchema.pre("save", function (next) {
+	this.readableid = getUserStringFromID(this._id.toString())
+	next()
+})
+
 
 module.exports = mongoose.model('Revocations', RevocationSchema)

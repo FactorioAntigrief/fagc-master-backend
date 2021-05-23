@@ -5,20 +5,9 @@ const AuthModel = require("../database/schemas/authentication")
 const ViolationModel = require("../database/schemas/violation")
 const OffenseModel = require("../database/schemas/offense")
 const cryptoRandomString = require('crypto-random-string')
-const ObjectId = require('mongoose').Types.ObjectId
 const { communityCreatedMessage, communityRemovedMessage } = require("../utils/info")
-const { checkGuild, checkUser } = require("../utils/functions")
-
-router.get('/getid', async (req, res) => {
-	if (req.query.id === undefined || !ObjectId.isValid(req.query.id))
-		return res.status(400).json({ error: "Bad Request", description: `id must be ObjectID, got ${req.query.id}` })
-	const community = await CommunityModel.findById(req.query.id)
-	res.status(200).json(community)
-})
-router.get('/getall', async (req, res) => {
-	const dbRes = await CommunityModel.find({ name: { $exists: true } })
-	res.status(200).json(dbRes)
-})
+const { checkGuild, checkUser } = require("../utils/functions");
+const { validateUserString } = require('../utils/functions-databaseless');
 
 router.post('/create', async (req, res) => {
     if (req.body.name === undefined || typeof (req.body.name) !== "string")
@@ -61,11 +50,11 @@ router.post('/create', async (req, res) => {
 })
 
 router.delete('/remove', async (req, res) => {
-    if (req.body.id === undefined || !ObjectId.isValid(req.body.id))
+    if (req.body.id === undefined || !validateUserString(req.body.id))
         return res.status(400).json({ error: "Bad Request", description: `id expected string, got ${typeof (req.body.id)} with value of ${req.body.id}` })
-    const community = await CommunityModel.findById(req.body.id)
+    const community = await CommunityModel.findOne({readableid: req.body.id})
     if (community === null)
-        return res.status(404).json({ error: "Not Found", description: `Community with ObjectID ${req.body.id} was not found` })
+        return res.status(404).json({ error: "Not Found", description: `Community with ID ${req.body.id} was not found` })
     // these queries need .exec() so they actually run and not just build themselves
 	AuthModel.findOneAndDelete({
         communityid: community._id
