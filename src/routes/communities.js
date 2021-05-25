@@ -52,7 +52,7 @@ router.post('/create', async (req, res) => {
 router.delete('/remove', async (req, res) => {
     if (req.body.id === undefined || !validateUserString(req.body.id))
         return res.status(400).json({ error: "Bad Request", description: `id expected string, got ${typeof (req.body.id)} with value of ${req.body.id}` })
-    const community = await CommunityModel.findOne({readableid: req.body.id})
+    const community = await CommunityModel.findOne({id: req.body.id})
     if (community === null)
         return res.status(404).json({ error: "Not Found", description: `Community with ID ${req.body.id} was not found` })
     // these queries need .exec() so they actually run and not just build themselves

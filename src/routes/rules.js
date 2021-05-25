@@ -21,7 +21,7 @@ router.post('/create', async (req, res) => {
 router.delete('/remove', async (req, res) => {
     if (req.body.id === undefined || !validateUserString(req.body.id))
         return res.status(400).json({ error: "Bad Request", description: `id must be ID` })
-    const rule = await RuleModel.findOneAndDelete({readableid: req.body.id})
+    const rule = await RuleModel.findOneAndDelete({id: req.body.id})
 	if (!rule)
 	res.status(404).json({ error: "Not Found", description: `Rule with ID ${req.body.id} was not found` })
 	ruleRemovedMessage(rule.toObject())

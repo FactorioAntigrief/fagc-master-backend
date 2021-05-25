@@ -2,7 +2,7 @@ const mongoose = require("mongoose")
 const { getUserStringFromID } = require("../../utils/functions-databaseless")
 
 const LogSchema = new mongoose.Schema({
-	readableid: String,
+	id: String,
     timestamp: Date,
     apikey: String,
     ip: String,
@@ -11,7 +11,7 @@ const LogSchema = new mongoose.Schema({
     endpointAddress: String,
 })
 LogSchema.pre("save", function (next) {
-	this.readableid = getUserStringFromID(this._id.toString())
+	this.id = getUserStringFromID(this._id.toString())
 	next()
 })
 

@@ -2,7 +2,7 @@ const mongoose = require("mongoose")
 const { getUserStringFromID } = require("../../utils/functions-databaseless")
 
 const OffenseModel = new mongoose.Schema({
-	readableid: String,
+	id: String,
     playername: String,
     communityid: {
 		type: mongoose.Types.ObjectId,
@@ -11,7 +11,7 @@ const OffenseModel = new mongoose.Schema({
 	violations: [{ type: mongoose.Types.ObjectId, ref: 'Violations' }]
 })
 OffenseModel.pre("save", function (next) {
-	this.readableid = getUserStringFromID(this._id.toString())
+	this.id = getUserStringFromID(this._id.toString())
 	next()
 })
 

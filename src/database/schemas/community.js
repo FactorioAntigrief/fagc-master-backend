@@ -2,13 +2,13 @@ const mongoose = require("mongoose")
 const { getUserStringFromID } = require("../../utils/functions-databaseless")
 
 const CommunitySchema = new mongoose.Schema({
-	readableid: String,
+	id: String,
     name: String,
     contact: String,
 	guildid: String,
 })
 CommunitySchema.pre("save", function (next) {
-	this.readableid = getUserStringFromID(this._id.toString())
+	this.id = getUserStringFromID(this._id.toString())
 	next()
 })
 

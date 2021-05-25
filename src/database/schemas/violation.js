@@ -2,7 +2,7 @@ const mongoose = require("mongoose")
 const { getUserStringFromID } = require("../../utils/functions-databaseless")
 
 const ViolationSchema = new mongoose.Schema({
-	readableid: String,
+	id: String,
     playername: String,
 	communityid: {
 		type: mongoose.Types.ObjectId,
@@ -16,7 +16,7 @@ const ViolationSchema = new mongoose.Schema({
     admin_id: String,
 })
 ViolationSchema.pre("save", function (next) {
-	this.readableid = getUserStringFromID(this._id.toString())
+	this.id = getUserStringFromID(this._id.toString())
 	next()
 })
 
