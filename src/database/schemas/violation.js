@@ -8,12 +8,12 @@ const ViolationSchema = new mongoose.Schema({
 		type: mongoose.Types.ObjectId,
 		ref: "Communities"
 	},
-	broken_rule: mongoose.SchemaTypes.ObjectId,
+	brokenRule: mongoose.SchemaTypes.ObjectId,
     proof: String,
     description: String,
     automated: Boolean,
-    violated_time: Date,
-    admin_id: String,
+    violatedTime: Date,
+    adminid: String,
 })
 ViolationSchema.pre("save", function (next) {
 	this.id = getUserStringFromID(this._id.toString())

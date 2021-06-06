@@ -4,16 +4,16 @@ const { getUserStringFromID } = require("../../utils/functions-databaseless")
 const RevocationSchema = new mongoose.Schema({
 	id: String,
     playername: String,
-    admin_id: String,
+    adminid: String,
 	communityid: {
 		type: mongoose.Types.ObjectId,
 		ref: "Communities"
 	},
-	broken_rule: mongoose.SchemaTypes.ObjectId,
+	brokenRule: mongoose.SchemaTypes.ObjectId,
     proof: String,
     description: String,
     automated: Boolean,
-    violated_time: Date,
+    violatedTime: Date,
     revokedTime: Date,
     revokedBy: String
 })

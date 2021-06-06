@@ -26,8 +26,8 @@ router.delete('/remove', async (req, res) => {
 	res.status(404).json({ error: "Not Found", description: `Rule with ID ${req.body.id} was not found` })
 	ruleRemovedMessage(rule.toObject())
 	res.status(200).json(rule)
-	const deletedViolations = await ViolationModel.find({ broken_rule: rule._id })
-	await ViolationModel.deleteMany({ broken_rule: rule._id })
+	const deletedViolations = await ViolationModel.find({ brokenRule: rule._id })
+	await ViolationModel.deleteMany({ brokenRule: rule._id })
 	await deletedViolations.forEach(async (violation) => {
 		await OffenseModel.updateOne({ "violations": violation._id }, {
 			$pull: {"violations": violation._id}
