@@ -22,8 +22,8 @@ async function checkUser(userid) {
 	if (!user || !user.id) return false
 	return true
 }
-async function checkGuild(guildid) {
-	const guild = await fetch(`https://discord.com/api/guilds/${guildid}`, {
+async function checkGuild(guildId) {
+	const guild = await fetch(`https://discord.com/api/guilds/${guildId}`, {
 		headers: {
 			"Content-type": "application/json",
 			"Authorization": `Bot ${config.botToken}`

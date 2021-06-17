@@ -5,7 +5,7 @@ const WebhookSchema = new mongoose.Schema({
 	id: String,
     id: String,
     token: String,
-    guildid: String,
+    guildId: String,
 })
 WebhookSchema.pre("save", function (next) {
 	this.id = getUserStringFromID(this._id.toString())

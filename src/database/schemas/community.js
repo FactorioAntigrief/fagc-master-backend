@@ -5,7 +5,7 @@ const CommunitySchema = new mongoose.Schema({
 	id: String,
     name: String,
     contact: String,
-	guildid: String,
+	guildId: String,
 })
 CommunitySchema.pre("save", function (next) {
 	this.id = getUserStringFromID(this._id.toString())

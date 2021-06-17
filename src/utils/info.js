@@ -21,7 +21,7 @@ async function WebhookMessage(message) {
             const client = new WebhookClient(webhook.id, webhook.token)
             client.send(message).catch((error) => {
                 if (error.stack.includes("Unknown Webhook")) {
-                    console.log(`Unknown webhook ${webhook.id} with token ${webhook.token}. GID ${webhook.guildid}. Removing webhook from database..`)
+                    console.log(`Unknown webhook ${webhook.id} with token ${webhook.token}. GID ${webhook.guildId}. Removing webhook from database..`)
                     WebhookSchema.findByIdAndDelete(webhook._id)
                 }
             })

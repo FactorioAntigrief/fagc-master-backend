@@ -1,7 +1,7 @@
 const mongoose = require("mongoose")
 
 const AuthSchema = new mongoose.Schema({
-	communityid: {
+	communityId: {
 		type: mongoose.Types.ObjectId,
 		ref: 'Communities'
 	},

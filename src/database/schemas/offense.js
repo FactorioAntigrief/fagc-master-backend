@@ -4,7 +4,7 @@ const { getUserStringFromID } = require("../../utils/functions-databaseless")
 const OffenseModel = new mongoose.Schema({
 	id: String,
     playername: String,
-    communityid: {
+    communityId: {
 		type: mongoose.Types.ObjectId,
 		ref: "Communities"
 	},
