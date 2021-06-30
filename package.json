@@ -34,6 +34,6 @@
   "homepage": "https://github.com/oof2win2/fagc-backend#readme",
   "devDependencies": {
     "eslint": "^7.29.0",
-    "nodemon": "^2.0.8"
+    "nodemon": "^2.0.9"
   }
 }
